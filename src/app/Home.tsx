@@ -16,7 +16,7 @@ export default function Home() {
   
   return (
     
-    <div className="relative min-h-screen bg-transparent selection:bg-cyan-500/30">
+    <div className="relative h-100dvh bg-transparent selection:bg-cyan-500/30">
 
       <SideNav />
       <IdentityHeader />
