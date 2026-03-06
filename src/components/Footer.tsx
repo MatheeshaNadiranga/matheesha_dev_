@@ -70,3 +70,4 @@ function FooterLink({ href, icon: Icon, label, isExternal }: FooterLinkProps) {
         </Link>
     );
 }
+// hi
