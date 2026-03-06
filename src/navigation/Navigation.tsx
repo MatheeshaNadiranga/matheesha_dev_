@@ -10,7 +10,7 @@ export default function Navigation() {
   const location = useLocation();
 
   return (
-    <div className="relative h-100dvh bg-transparent text-white selection:bg-cyan-500/30">
+    <div className="relative h-[100dvh] bg-transparent text-white selection:bg-cyan-500/30">
       <SideNav />
 
       <main className="w-full h-full">
