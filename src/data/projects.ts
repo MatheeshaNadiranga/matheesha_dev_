@@ -38,6 +38,15 @@ export const PROJECTS: Project[] = [
     tech: ["React", "Tailwind CSS", "Three.js"],
     link: "#",
   },
+  {
+    title: "Mobile Controllable Car",
+    category: "Electronics",
+    image: "",
+    description:
+      "A mobile-controlled robotic car built using ESP32, React Native, and the MQTT protocol. The React Native mobile app sends control commands (forward, backward, left, right) to the ESP32 through an MQTT broker, allowing real-time remote control of the vehicle. An ultrasonic sensor is integrated to detect obstacles in front of the car and enhance safety. This project demonstrates IoT communication between embedded hardware and a mobile application using a lightweight publish–subscribe architecture.",
+    tech: ["React Native", "MQTT", "ESP32"],
+    link: "#",
+  },
 ];
 
 export const DETAILED_PROJECTS: Projects[] = [
@@ -58,6 +67,16 @@ export const DETAILED_PROJECTS: Projects[] = [
     description: PROJECTS[1].description,
     tech: PROJECTS[1].tech,
     github: PROJECTS[1].link,
+    demo: "#",
+    status: "Completed",
+  },
+  {
+    id: 3,
+    title: PROJECTS[2].title,
+    category: "Electronic",
+    description: PROJECTS[2].description,
+    tech: PROJECTS[2].tech,
+    github: PROJECTS[2].link,
     demo: "#",
     status: "Completed",
   },
