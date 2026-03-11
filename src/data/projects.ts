@@ -41,7 +41,8 @@ export const PROJECTS: Project[] = [
   {
     title: "Mobile Controllable Car",
     category: "Electronics",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1562408590-e32931084e23?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZWxlY3Ryb25pY3xlbnwwfHwwfHx8MA%3D%3D",
     description:
       "A mobile-controlled robotic car built using ESP32, React Native, and the MQTT protocol. The React Native mobile app sends control commands (forward, backward, left, right) to the ESP32 through an MQTT broker, allowing real-time remote control of the vehicle. An ultrasonic sensor is integrated to detect obstacles in front of the car and enhance safety. This project demonstrates IoT communication between embedded hardware and a mobile application using a lightweight publish–subscribe architecture.",
     tech: ["React Native", "MQTT", "ESP32"],
