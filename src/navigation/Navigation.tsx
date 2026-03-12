@@ -10,12 +10,10 @@ export default function Navigation() {
   const location = useLocation();
 
   return (
-    <div className="relative min-h-[100svh] bg-transparent text-white selection:bg-cyan-500/30"
-      style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 12px)" }}
-    >
+    <div className="relative min-h-[100dvh] text-white selection:bg-cyan-500/30">
       <SideNav />
 
-      <main className="w-full min-h-[100svh]">
+      <main className=" w-full min-h-dvh">
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}

@@ -22,7 +22,7 @@ const SKILLS = [
 
 export default function About() {
   return (
-    <section className="relative min-h-screen pt-24 pb-32 px-6 lg:px-12 overflow-hidden ">
+    <section className="relative min-h-[100dvh] pt-24 pb-32 px-6 lg:px-12 overflow-hidden bg-white/[0.03]">
       {/* Background Decorative Elements */}
       <div className="absolute top-0 left-0 w-full h-full -z-10">
         <div className="absolute top-[-5%] left-[-5%] w-[30%] h-[30%] bg-cyan-500/10 blur-[100px] rounded-full" />

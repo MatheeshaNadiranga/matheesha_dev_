@@ -28,7 +28,7 @@ const TIMELINE = [
 
 export default function Experience() {
   return (
-    <section className="relative min-h-screen pt-24 pb-32 px-6 ">
+    <section className="relative min-h-[100dvh] pt-24 pb-32 px-6 ">
       <div className="max-w-4xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

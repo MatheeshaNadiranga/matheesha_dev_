@@ -4,11 +4,21 @@
 @tailwind utilities;
 body,
 html ,#root{
-  background-color: transparent;
+ 
   margin: 0;
   padding: 0;
-  min-height: 100%;
   width: 100%;
 
 }
 
+/* In your globals.css */
+html {
+  height: 100%; /* Provides a stable base */
+  background-color: black; 
+}
+
+body {
+  min-height: 100dvh; /* Let the body handle the dynamic resizing */
+  margin: 0;
+  overscroll-behavior-y: none;
+}

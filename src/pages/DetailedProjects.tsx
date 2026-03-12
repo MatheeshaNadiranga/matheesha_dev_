@@ -22,7 +22,7 @@ export default function DetailedProjects() {
   );
 
   return (
-    <section className="relative min-h-screen pt-24 pb-32 px-6 lg:px-12">
+    <section className="bg-transparent relative min-h-[100dvh] pt-24 pb-32 px-6 lg:px-12">
       {/* Background Glow */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-500/5 blur-[120px] rounded-full -z-10" />
 
