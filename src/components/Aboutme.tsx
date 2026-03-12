@@ -22,7 +22,7 @@ export default function AboutMe() {
     ];
 
     return (
-        <section className="relative min-h-screen text-white p-6 overflow-hidden flex flex-col justify-center items-center pt-32 pb-20">
+        <section className="bg-transparent min-h-[100dvh] relative min-h-screen text-white p-6 overflow-hidden flex flex-col justify-center items-center pt-32 pb-20">
 
             <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 blur-[120px] rounded-full -z-10 pointer-events-none" />
             <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 blur-[120px] rounded-full -z-10 pointer-events-none" />

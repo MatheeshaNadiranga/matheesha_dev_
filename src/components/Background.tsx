@@ -90,7 +90,7 @@ function Shards() {
 
 export default function Background() {
     return (
-        <div className="fixed inset-0 w-full h-[100svh] -z-10 bg-black pointer-events-none">
+        <div className="overflow-hidden min-h-[100dvh] fixed inset-0 w-full bg-black -z-10 pointer-events-none">
             <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
                 <Particles />
                 <Shards />
