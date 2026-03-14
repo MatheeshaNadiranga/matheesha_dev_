@@ -1,12 +1,13 @@
 import { Github, Linkedin, Mail, Twitter } from "lucide-react";
 import { Link } from "react-router-dom";
 import { type LucideIcon } from "lucide-react";
-
+import { contact } from '../data/social_links'
 export default function Footer() {
-    const githubURL = import.meta.env.VITE_GITHUB_URL;
-    const linkedinURL = import.meta.env.VITE_LINKEDIN_URL;
-    const twitterURL = import.meta.env.VITE_TWITTER_URL;
-    const email = import.meta.env.VITE_EMAIL;
+    const githubURL = contact.github;
+    const linkedinURL = contact.linkedin;
+    const twitterURL = contact.twitter;
+    const email = contact.email;
+    
     const currentYear = new Date().getFullYear();
 
     return (
