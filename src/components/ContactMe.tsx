@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import {
   Github,
@@ -12,19 +11,24 @@ import {
   Mail,
   ArrowUpRight
 } from "lucide-react";
-const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER;
-const githubURL = import.meta.env.VITE_GITHUB_URL;
-const linkedinURL = import.meta.env.VITE_LINKEDIN_URL;
-const twitterURL = import.meta.env.VITE_TWITTER_URL;
+import { contact } from '../data/social_links'
+const whatsappNumber = contact.whatsapp;
+const githubURL = contact.github;
+const linkedinURL = contact.linkedin;
+const twitterURL = contact.twitter;
+const facebook = contact.facebook;
+const instagram = '';
+const youtube = '';
+const telegram = '';
 const SOCIALS = [
   { name: "WhatsApp", icon: <MessageCircle size={24} />, link: `https://wa.me/${whatsappNumber}`, color: "hover:text-green-400" },
   { name: "LinkedIn", icon: <Linkedin size={24} />, link: linkedinURL, color: "hover:text-blue-400" },
   { name: "GitHub", icon: <Github size={24} />, link: githubURL, color: "hover:text-white" },
-  { name: "Telegram", icon: <Send size={24} />, link: "#", color: "hover:text-sky-400" },
+  { name: "Telegram", icon: <Send size={24} />, link: telegram, color: "hover:text-sky-400" },
   { name: "Twitter (X)", icon: <Twitter size={24} />, link: twitterURL, color: "hover:text-stone-200" },
-  { name: "Instagram", icon: <Instagram size={24} />, link: "#", color: "hover:text-pink-400" },
-  { name: "Facebook", icon: <Facebook size={24} />, link: "#", color: "hover:text-blue-600" },
-  { name: "YouTube", icon: <Youtube size={24} />, link: "#", color: "hover:text-red-500" },
+  { name: "Instagram", icon: <Instagram size={24} />, link: instagram, color: "hover:text-pink-400" },
+  { name: "Facebook", icon: <Facebook size={24} />, link: facebook, color: "hover:text-blue-600" },
+  { name: "YouTube", icon: <Youtube size={24} />, link: youtube, color: "hover:text-red-500" },
 ];
 
 export default function ContactMe() {

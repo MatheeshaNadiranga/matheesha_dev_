@@ -35,12 +35,12 @@ export const PROJECTS: Project[] = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNiiUlZsjpYkgQhaGS1lKrCPzWrp4ME8CLmA&s",
     description:
       "A high-performance personal showcase featuring interactive 3D graphics and modern styling. Focused on clean code, responsive design, and smooth user interactions.",
-    tech: ["React", "Tailwind CSS", "Three.js"],
+    tech: ["React", "Tailwind CSS", "Three.js","Typescript"],
     link: "#",
   },
   {
     title: "Mobile Controllable Car",
-    category: "Electronics",
+    category: "Embedded System",
     image:
       "https://images.unsplash.com/photo-1562408590-e32931084e23?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZWxlY3Ryb25pY3xlbnwwfHwwfHx8MA%3D%3D",
     description:
@@ -74,7 +74,7 @@ export const DETAILED_PROJECTS: Projects[] = [
   {
     id: 3,
     title: PROJECTS[2].title,
-    category: "Electronic",
+    category: "Electronics",
     description: PROJECTS[2].description,
     tech: PROJECTS[2].tech,
     github: PROJECTS[2].link,
