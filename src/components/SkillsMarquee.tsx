@@ -30,6 +30,7 @@ const skills = [
     { name: "Electronics", icon: Zap, color: "#FBBF24" },
     { name: "Embedded System", icon: Cpu, color: "#10B981" },
     { name: "MongoDB", icon: Database, color: "#47A248" },
+    { name: "Angular", icon: Terminal, color: "#F44336" }
 ];
 
 function SkillPill({ name, icon: Icon, color }: { name: string; icon: LucideIcon; color: string }) {
@@ -45,10 +46,10 @@ export default function SkillsMarquee() {
     const allSkills = [...skills, ...skills];
 
     return (
-        
+
         <section className="w-full py-14 px-6 overflow-hidden">
             <div className="max-w-7xl mx-auto space-y-10">
-                
+
                 {/* Header */}
                 <div className="text-center mb-12">
                     <span className="text-xs font-bold tracking-[0.4em] uppercase text-cyan-400 mb-2 block">
