@@ -5,7 +5,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, Html } from "@react-three/drei";
 import * as THREE from "three";
 
-/**
+/*
  * 1. YOUR REAL SKILLS DATA - Using Devicon original versions
  */
 const SKILL_ROWS = [
@@ -16,6 +16,7 @@ const SKILL_ROWS = [
     { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
     { name: "Express", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" }, // Removed wordmark for cleaner look
     { name: "Spring Boot", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" },
+    { name: "Angular", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" }
   ],
   [
     { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
@@ -24,6 +25,7 @@ const SKILL_ROWS = [
     { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
     { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
     { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+    { name: "NextJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" }
   ],
 ];
 
@@ -81,7 +83,7 @@ export default function SkillsSpinner() {
 
   return (
     <section ref={containerRef} className="relative w-full py-12 flex flex-col items-center gap-12 bg-transparent overflow-hidden">
-      
+
       <motion.div style={{ opacity }} className="text-center">
         <h2 className="text-5xl md:text-8xl font-black text-white tracking-tighter uppercase">
           Tech <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">Arsenal</span>
@@ -100,9 +102,9 @@ export default function SkillsSpinner() {
 
       <div className="w-full space-y-8">
         {SKILL_ROWS.map((row, idx) => (
-          <motion.div 
-            key={idx} 
-            style={{ x: idx === 0 ? row1X : row2X, opacity }} 
+          <motion.div
+            key={idx}
+            style={{ x: idx === 0 ? row1X : row2X, opacity }}
             className="flex justify-center gap-6"
           >
             {row.map((skill) => (
@@ -120,19 +122,19 @@ export default function SkillsSpinner() {
  */
 function SkillCard({ skill }: { skill: { name: string; icon: string } }) {
   return (
-    <motion.div 
+    <motion.div
       whileHover={{ scale: 1.1, y: -5 }}
       className="group relative w-20 h-20 md:w-24 md:h-24 bg-white/[0.05] border border-white/10 rounded-[2rem] flex items-center justify-center backdrop-blur-xl transition-all hover:bg-white/[0.1] hover:border-white/20 shadow-2xl"
     >
       {/* REMOVED: filter grayscale and opacity-50 
         ADDED: full color and high opacity
       */}
-      <img 
-        src={skill.icon} 
-        alt={skill.name} 
-        className="w-10 h-10 md:w-12 md:h-12 object-contain transition-transform duration-300 group-hover:scale-110" 
+      <img
+        src={skill.icon}
+        alt={skill.name}
+        className="w-10 h-10 md:w-12 md:h-12 object-contain transition-transform duration-300 group-hover:scale-110"
       />
-      
+
       {/* Tooltip on hover */}
       <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all bg-stone-900 border border-white/20 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest pointer-events-none shadow-xl">
         {skill.name}
