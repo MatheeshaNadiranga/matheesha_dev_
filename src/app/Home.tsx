@@ -10,12 +10,13 @@ import Footer from "../components/Footer";
 import MyPhoto from "@/components/MyPhoto";
 import SideNav from "@/components/SideNav";
 import TechBento from "@/components/TechBento";
+import AboutSection from "@/components/Aboutsection";
 
 
 export default function Home() {
-  
+
   return (
-    
+
     <div className="relative h-[100dvh] bg-transparent selection:bg-cyan-500/30">
 
       <SideNav />
@@ -23,9 +24,11 @@ export default function Home() {
 
       <main className="relative z-10">
         <AboutMe />
+        <AboutSection />
+
         <MyPhoto />
         <TechBento />
-        
+
         <SkillsMarquee />
         <SkillSpinner />
         <Projects />
