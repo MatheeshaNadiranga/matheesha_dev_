@@ -4,7 +4,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import * as THREE from "three";
 
-/* ─── 3D: Double helix ─── */
+
 function HelixScene() {
   const groupRef = useRef<THREE.Group>(null!);
 
