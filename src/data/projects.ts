@@ -44,7 +44,7 @@ export const PROJECTS: Project[] = [
       "USB",
       "ST-Link",
     ],
-    link: "#",
+    link: "https://furzy.com/mikesblog/wp-content/uploads/2017/12/DIN001-STM32F091RC-ISO485-IO-_640x523.jpg",
   },
 
   {
@@ -62,7 +62,7 @@ export const PROJECTS: Project[] = [
       "Signal Acquisition",
       "TFT Display",
     ],
-    link: "#",
+    link: "https://www.testandmeasurementtips.com/wp-content/uploads/2011/05/Rohde-Schwarz-RandS-RTO-Digital-Oscilloscope-2.jpg",
   },
 
   {
@@ -80,7 +80,7 @@ export const PROJECTS: Project[] = [
       "DC-DC Conversion",
       "Microcontroller",
     ],
-    link: "#",
+    link: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIPoTr1drbetnA-9MEgttY1-303r4NB1_0sJCr8F7H6Nx6AGVMfkUkvCsf&s=10",
   },
 
   {
