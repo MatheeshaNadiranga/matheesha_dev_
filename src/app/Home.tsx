@@ -11,6 +11,7 @@ import MyPhoto from "@/components/MyPhoto";
 import SideNav from "@/components/SideNav";
 import TechBento from "@/components/TechBento";
 import AboutSection from "@/components/Aboutsection";
+import CyberScanner from "@/experiment_components/CyberScanner";
 
 
 export default function Home() {
@@ -35,6 +36,7 @@ export default function Home() {
         <RemoteReady />
         <Connect />
         <ContactMe />
+        <CyberScanner />
       </main>
 
       <Footer />
