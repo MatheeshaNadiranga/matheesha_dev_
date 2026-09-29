@@ -19,88 +19,204 @@ export interface Projects {
   image?: string;
   link?: string;
 }
+
+/* ============================================================
+   PROJECT DATA
+============================================================ */
+
 export const PROJECTS: Project[] = [
   {
-    title: "Expenses Tracker",
-    category: "Full Stack",
+    title: "Industrial Multi-I/O Controller",
+    category: "Electronics",
     image:
-      "https://media.gettyimages.com/id/1513515363/video/program-coding.jpg?s=640x640&k=20&c=usywTgJcpE8XYWuI9xz7jyZDDSRLUDC2Zoj604vQkOk=",
+      "/projects/industrial-controller.jpg",
     description:
-      "A sleek, intuitive expense manager that helps users take control of their finances. Features a responsive React web dashboard and a React Native mobile app for tracking spending on the go.",
-    tech: ["React", "Express JS", "React Native"],
+      "A modular industrial controller designed around isolated 24 V digital inputs, isolated transistor outputs, 0–10 V analog inputs, 4–20 mA current inputs, RS485 communication, SD card storage, OLED display, USB connectivity, ST-Link programming, push-button control, and dedicated SPI peripherals.",
+    tech: [
+      "STM32",
+      "Altium Designer",
+      "RS485",
+      "24V Digital I/O",
+      "0–10V",
+      "4–20mA",
+      "OLED",
+      "SD Card",
+      "USB",
+      "ST-Link",
+    ],
     link: "#",
   },
+
   {
-    title: "My Portfolio",
-    category: "Web Development",
+    title: "Embedded Oscilloscope",
+    category: "Electronics",
     image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNiiUlZsjpYkgQhaGS1lKrCPzWrp4ME8CLmA&s",
+      "/projects/oscilloscope.jpg",
     description:
-      "A high-performance personal showcase featuring interactive 3D graphics and modern styling. Focused on clean code, responsive design, and smooth user interactions.",
-    tech: ["React", "Tailwind CSS", "Three.js", "Typescript"],
+      "A compact embedded oscilloscope concept using a microcontroller for signal acquisition and a TFT display for firmware-driven waveform visualization. Designed as a practical electronics measurement and debugging platform.",
+    tech: [
+      "ATmega32",
+      "ILI9341",
+      "SPI",
+      "Embedded C/C++",
+      "Signal Acquisition",
+      "TFT Display",
+    ],
     link: "#",
   },
+
+  {
+    title: "Smart MPPT Charger",
+    category: "Electronics",
+    image:
+      "/projects/mppt-charger.jpg",
+    description:
+      "A smart solar charging system concept focused on maximum power point tracking, power conversion, battery charging, embedded monitoring, and efficient energy management.",
+    tech: [
+      "MPPT",
+      "Power Electronics",
+      "Embedded Control",
+      "Battery Charging",
+      "DC-DC Conversion",
+      "Microcontroller",
+    ],
+    link: "#",
+  },
+
+  {
+    title: "BLDC Motor Controller",
+    category: "Electronics",
+    image:
+      "/projects/bldc-controller.jpg",
+    description:
+      "A BLDC motor-control project exploring embedded commutation, PWM generation, feedback, power-stage design, and firmware architecture for efficient motor operation.",
+    tech: [
+      "BLDC",
+      "Motor Control",
+      "Embedded Systems",
+      "PWM",
+      "Power Electronics",
+      "Microcontroller",
+    ],
+    link: "#",
+  },
+
+  {
+    title: "Low-Cost Wireless Audio Receiver",
+    category: "Electronics",
+    image:
+      "/projects/wireless-audio.jpg",
+    description:
+      "A compact wireless audio receiver prototype focused on low-cost hardware, wireless audio reception, power management, audio output, PCB development, and product-oriented hardware design.",
+    tech: [
+      "Wireless Audio",
+      "Embedded Systems",
+      "Low Power",
+      "Audio Electronics",
+      "PCB Design",
+      "Hardware Prototype",
+    ],
+    link: "#",
+  },
+
   {
     title: "Mobile Controllable Car",
-    category: "Embedded System",
+    category: "Electronics",
     image:
-      "https://images.unsplash.com/photo-1562408590-e32931084e23?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZWxlY3Ryb25pY3xlbnwwfHwwfHx8MA%3D%3D",
+      "/projects/mobile-car.jpg",
     description:
-      "A mobile-controlled robotic car built using ESP32, React Native, and the MQTT protocol. The React Native mobile app sends control commands (forward, backward, left, right) to the ESP32 through an MQTT broker, allowing real-time remote control of the vehicle. An ultrasonic sensor is integrated to detect obstacles in front of the car and enhance safety. This project demonstrates IoT communication between embedded hardware and a mobile application using a lightweight publish–subscribe architecture.",
-    tech: ["React Native", "MQTT", "ESP32"],
+      "An ESP32-based robotic vehicle controlled remotely through a mobile application. The system uses MQTT communication for real-time commands and an ultrasonic sensor for front obstacle detection.",
+    tech: [
+      "ESP32",
+      "MQTT",
+      "React Native",
+      "IoT",
+      "Ultrasonic Sensor",
+      "Embedded Systems",
+    ],
     link: "#",
   },
+
   {
-    title: "Vehicle Management System",
-    category: "Full Stack",
+    title: "Embedded IoT Controller",
+    category: "Electronics",
     image:
-      "https://static.vecteezy.com/system/resources/previews/003/335/579/large_2x/desktop-source-code-and-wallpaper-by-coding-and-programming-free-photo.jpg",
+      "/projects/iot-controller.jpg",
     description:
-      "A comprehensive web application for managing high-end vehicle stock. Built with a React frontend and Java Spring Boot backend, the system features advanced filtering, dynamic spare part linking, and automated image handling. Key highlights include custom database constraints to ensure data integrity and a responsive, dark-themed dashboard for administrative control.",
-    tech: ["React", "Springboot", "MySQL"],
+      "An embedded IoT controller architecture combining microcontroller firmware, sensor and actuator interfaces, serial communication, and wireless connectivity for connected embedded applications.",
+    tech: [
+      "ESP32",
+      "STM32",
+      "UART",
+      "SPI",
+      "I²C",
+      "RS485",
+      "IoT",
+      "Firmware",
+    ],
     link: "#",
   },
+
+  {
+    title: "Low-Power Embedded System",
+    category: "Electronics",
+    image:
+      "/projects/low-power.jpg",
+    description:
+      "An embedded hardware concept focused on power-efficient operation, peripheral management, sleep strategies, battery operation, and efficient system architecture.",
+    tech: [
+      "Low Power",
+      "Embedded C",
+      "STM32",
+      "ESP32",
+      "Power Management",
+      "Battery Systems",
+    ],
+    link: "#",
+  },
+
+  {
+    title: "Embedded Display Controller",
+    category: "Electronics",
+    image:
+      "/projects/display-controller.jpg",
+    description:
+      "A microcontroller-based interface integrating TFT and OLED display control, SPI communication, user input, and firmware-driven graphical output.",
+    tech: [
+      "STM32",
+      "ATmega32",
+      "OLED",
+      "ILI9341",
+      "SPI",
+      "Embedded Firmware",
+    ],
+    link: "#",
+  }
+  
 ];
 
-export const DETAILED_PROJECTS: Projects[] = [
-  {
-    id: 1,
-    title: PROJECTS[0].title,
-    category: "Software",
-    description: PROJECTS[0].description,
-    tech: PROJECTS[0].tech,
-    github: PROJECTS[0].link,
-    demo: "#",
-    status: "In Progress",
-  },
-  {
-    id: 2,
-    title: PROJECTS[1].title,
-    category: "Software",
-    description: PROJECTS[1].description,
-    tech: PROJECTS[1].tech,
-    github: PROJECTS[1].link,
-    demo: "#",
-    status: "Completed",
-  },
-  {
-    id: 3,
-    title: PROJECTS[2].title,
-    category: "Electronics",
-    description: PROJECTS[2].description,
-    tech: PROJECTS[2].tech,
-    github: PROJECTS[2].link,
-    demo: "#",
-    status: "Completed",
-  },
-  {
-    id: 4,
-    title: PROJECTS[3].title,
-    category: "Software",
-    description: PROJECTS[3].description,
-    tech: PROJECTS[3].tech,
-    github: PROJECTS[3].link,
-    demo: "#",
-    status: "Completed",
-  },
-];
+/* ============================================================
+   DETAILED PROJECTS
+============================================================ */
+
+export const DETAILED_PROJECTS: Projects[] =
+  PROJECTS.map((project, index) => ({
+    id: index + 1,
+    title: project.title,
+    category:
+      project.category === "Electronics"
+        ? "Electronics"
+        : "Software",
+    description: project.description,
+    tech: project.tech,
+    github: undefined,
+    demo: undefined,
+    status:
+      project.title === "My Portfolio"
+        ? "Completed"
+        : project.category === "Electronics"
+        ? "Prototype"
+        : "Completed",
+    image: project.image,
+    link: project.link,
+  }));
