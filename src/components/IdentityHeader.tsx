@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import {
-  
   Cpu,
   Zap,
   Globe,
@@ -64,7 +63,7 @@ export default function IdentityHeader() {
             py-2
             sm:py-2.5
             bg-black/65
-            backdrop-blur-2xl
+            backdrop-blur-xl
             border
             border-white/10
             rounded-xl
@@ -159,7 +158,7 @@ export default function IdentityHeader() {
                 flex
                 items-center
                 gap-1
-                whitespace-nowrap
+                min-w-0
               "
             >
               <Cpu
@@ -173,12 +172,12 @@ export default function IdentityHeader() {
                 "
               />
 
-              <span className="hidden sm:inline">
-                Electronic &amp; Embedded Engineer
+              <span className="hidden sm:inline whitespace-nowrap truncate">
+                Electronic + Embedded + Software Engineer
               </span>
 
-              <span className="sm:hidden">
-                Embedded Engineer
+              <span className="sm:hidden whitespace-nowrap truncate">
+                Embedded + Software Engineer
               </span>
             </p>
 
@@ -215,6 +214,7 @@ export default function IdentityHeader() {
             tracking-[0.15em]
             lg:tracking-[0.2em]
             pointer-events-auto
+            shrink-0
           "
         >
 
@@ -263,11 +263,12 @@ export default function IdentityHeader() {
             px-2.5
             py-2
             bg-black/60
-            backdrop-blur-2xl
+            backdrop-blur-xl
             border
             border-white/10
             rounded-xl
             pointer-events-auto
+            shrink-0
           "
         >
           <span

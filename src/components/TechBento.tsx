@@ -1,553 +1,723 @@
+
 "use client";
 
 import { motion } from "framer-motion";
+
 import {
-  CircuitBoard,
-  Cpu,
-  Code2,
-  Radio,
-  Zap,
-  Factory,
-  Box,
-  Settings2,
-  Gauge,
-  Wrench,
-  Layers,
+    CircuitBoard,
+    Cpu,
+    Code2,
+    type LucideIcon,
 } from "lucide-react";
 
-export default function TechBento() {
-  const categories = [
-    {
-      title: "Electronics",
-      icon: CircuitBoard,
-      skills: [
-        "Analog Design",
-        "Digital Design",
-        "Signal Conditioning",
-        "Sensor Interfaces",
-      ],
-      color: "text-cyan-400",
-      glow: "hover:border-cyan-400/30",
-    },
+/* ============================================================
+   TYPES
+============================================================ */
+
+type SkillCategory = {
+    title: string;
+    description: string;
+    icon: LucideIcon;
+    skills: string[];
+    color: string;
+    glow: string;
+    accent: string;
+    hoverBorder: string;
+};
+
+/* ============================================================
+   ENGINEERING CATEGORIES
+============================================================ */
+
+const CATEGORIES: SkillCategory[] = [
+
+    /* ========================================================
+       ELECTRONICS ENGINEERING
+    ======================================================== */
 
     {
-      title: "Embedded Systems",
-      icon: Cpu,
-      skills: [
-        "STM32",
-        "ESP32",
-        "AVR / ATmega",
-        "PIC",
-      ],
-      color: "text-purple-400",
-      glow: "hover:border-purple-400/30",
+        title: "Electronics Engineering",
+
+        description:
+            "Electronic hardware design, circuit development, PCB engineering and power systems.",
+
+        icon: CircuitBoard,
+
+        skills: [
+            "Analog Design",
+            "Digital Design",
+            "Circuit Design",
+            "PCB Design",
+            "Altium Designer",
+            "KiCad",
+            "Signal Conditioning",
+            "Sensor Interfaces",
+            "Power Electronics",
+            "Battery Systems",
+            "Industrial I/O",
+            "0–10V / 4–20mA",
+            "Instrumentation",
+            "SolidWorks",
+            "Hardware Prototyping",
+        ],
+
+        color: "text-cyan-400",
+        glow: "bg-cyan-400",
+        accent: "bg-cyan-400",
+        hoverBorder: "hover:border-cyan-400/30",
     },
+
+    /* ========================================================
+       EMBEDDED SYSTEMS ENGINEERING
+    ======================================================== */
 
     {
-      title: "Firmware",
-      icon: Code2,
-      skills: [
-        "Embedded C",
-        "C++",
-        "Firmware Development",
-        "Debugging",
-      ],
-      color: "text-blue-400",
-      glow: "hover:border-blue-400/30",
+        title: "Embedded Systems Engineering",
+
+        description:
+            "Microcontroller programming, firmware development, hardware communication and IoT integration.",
+
+        icon: Cpu,
+
+        skills: [
+            "STM32",
+            "ESP32",
+            "AVR / ATmega",
+            "PIC",
+            "Embedded C",
+            "C / C++",
+            "Firmware Development",
+            "UART",
+            "SPI",
+            "I²C",
+            "RS485",
+            "MQTT",
+            "Wi-Fi / IoT",
+            "PlatformIO",
+            "STM32CubeIDE",
+        ],
+
+        color: "text-purple-400",
+        glow: "bg-purple-400",
+        accent: "bg-purple-400",
+        hoverBorder: "hover:border-purple-400/30",
     },
+
+    /* ========================================================
+       SOFTWARE ENGINEERING
+    ======================================================== */
 
     {
-      title: "Communication",
-      icon: Radio,
-      skills: [
-        "UART",
-        "SPI",
-        "I²C",
-        "RS485",
-      ],
-      color: "text-sky-400",
-      glow: "hover:border-sky-400/30",
-    },
+        title: "Software Engineering",
 
-    {
-      title: "PCB Design",
-      icon: Layers,
-      skills: [
-        "Altium Designer",
-        "KiCad",
-        "Schematic Design",
-        "PCB Layout",
-      ],
-      color: "text-orange-400",
-      glow: "hover:border-orange-400/30",
-    },
+        description:
+            "Frontend and backend development, application architecture, databases and software integration.",
 
-    {
-      title: "Industrial",
-      icon: Factory,
-      skills: [
-        "Industrial I/O",
-        "Controller Design",
-        "0–10V",
-        "4–20mA",
-      ],
-      color: "text-emerald-400",
-      glow: "hover:border-emerald-400/30",
-    },
+        icon: Code2,
 
-    {
-      title: "Power Systems",
-      icon: Zap,
-      skills: [
-        "Low Power Design",
-        "Power Electronics",
-        "Power Supplies",
-        "MPPT Concepts",
-      ],
-      color: "text-yellow-400",
-      glow: "hover:border-yellow-400/30",
-    },
+        skills: [
+            "JavaScript",
+            "TypeScript",
+            "React",
+            "Node.js",
+            "Express.js",
+            "Java",
+            "Spring Boot",
+            "Python",
+            "MySQL",
+            "REST APIs",
+            "Git",
+            "GitHub",
+            "Tailwind CSS",
+            "Database Design",
+            "DevOps",
+        ],
 
-    {
-      title: "CAD & Hardware",
-      icon: Box,
-      skills: [
-        "SolidWorks",
-        "Enclosure Design",
-        "3D Printing",
-        "Hardware Prototyping",
-      ],
-      color: "text-pink-400",
-      glow: "hover:border-pink-400/30",
+        color: "text-blue-400",
+        glow: "bg-blue-400",
+        accent: "bg-blue-400",
+        hoverBorder: "hover:border-blue-400/30",
     },
+];
 
-    {
-      title: "Instrumentation",
-      icon: Gauge,
-      skills: [
-        "Oscilloscope",
-        "Multimeter",
-        "Logic Analysis",
-        "Hardware Debugging",
-      ],
-      color: "text-indigo-400",
-      glow: "hover:border-indigo-400/30",
-    },
+/* ============================================================
+   SKILL CARD
+============================================================ */
 
-    {
-      title: "Engineering Tools",
-      icon: Settings2,
-      skills: [
-        "STM32CubeIDE",
-        "VS Code",
-        "Git",
-        "GitHub",
-      ],
-      color: "text-violet-400",
-      glow: "hover:border-violet-400/30",
-    },
+function SkillCard({
+    category,
+    index,
+}: {
+    category: SkillCategory;
+    index: number;
+}) {
+    const Icon = category.icon;
 
-    {
-      title: "IoT Systems",
-      icon: Radio,
-      skills: [
-        "Wi-Fi",
-        "IoT Devices",
-        "Wireless Systems",
-        "Cloud Connectivity",
-      ],
-      color: "text-teal-400",
-      glow: "hover:border-teal-400/30",
-    },
-
-    {
-      title: "Control Systems",
-      icon: Wrench,
-      skills: [
-        "Motor Control",
-        "BLDC Concepts",
-        "Automation",
-        "System Integration",
-      ],
-      color: "text-red-400",
-      glow: "hover:border-red-400/30",
-    },
-  ];
-
-  return (
-    <section
-      className="
+    return (
+        <motion.div
+            initial={{
+                opacity: 0,
+                y: 25,
+            }}
+            whileInView={{
+                opacity: 1,
+                y: 0,
+            }}
+            viewport={{
+                once: true,
+                amount: 0.12,
+            }}
+            transition={{
+                duration: 0.55,
+                delay: index * 0.12,
+            }}
+            whileHover={{
+                y: -6,
+            }}
+            className={`
+                group
                 relative
-                w-full
+                isolate
+                flex
+                h-full
+                min-h-[280px]
+                flex-col
                 overflow-hidden
-                py-16
-                sm:py-20
-                lg:py-24
-                px-4
-                sm:px-6
-                lg:px-8
-                lg:pl-28
-            "
-    >
-      {/* =====================================================
-                BACKGROUND GLOW
-            ===================================================== */}
 
-      <div
-        className="
+                rounded-[1.75rem]
+                border
+                border-white/[0.08]
+
+                bg-white/[0.025]
+                p-5
+                backdrop-blur-xl
+
+                shadow-xl
+                shadow-black/10
+
+                transition-colors
+                duration-300
+
+                hover:bg-white/[0.045]
+
+                sm:min-h-[300px]
+                sm:rounded-[2rem]
+                sm:p-7
+
+                ${category.hoverBorder}
+            `}
+        >
+
+            {/* ==============================================
+                BACKGROUND GLOW
+            ============================================== */}
+
+            <div
+                className={`
                     pointer-events-none
                     absolute
-                    top-20
-                    left-1/4
-                    w-72
-                    h-72
-                    sm:w-96
-                    sm:h-96
-                    rounded-full
-                    bg-cyan-500/5
-                    blur-[110px]
-                "
-      />
+                    -right-16
+                    -top-16
+                    -z-10
 
-      <div
-        className="
+                    h-40
+                    w-40
+                    rounded-full
+                    blur-[75px]
+
+                    opacity-[0.04]
+
+                    transition-opacity
+                    duration-500
+
+                    group-hover:opacity-20
+
+                    ${category.glow}
+                `}
+            />
+
+            {/* ==============================================
+                HEADER
+            ============================================== */}
+
+            <div
+                className="
+                    relative
+                    mb-6
+                    flex
+                    items-start
+                    justify-between
+                    gap-3
+                "
+            >
+
+                {/* CATEGORY ICON */}
+
+                <div
+                    className={`
+                        flex
+                        h-12
+                        w-12
+                        shrink-0
+                        items-center
+                        justify-center
+
+                        rounded-2xl
+
+                        border
+                        border-white/[0.08]
+
+                        bg-white/[0.04]
+
+                        transition-all
+                        duration-300
+
+                        group-hover:scale-110
+                        group-hover:bg-white/[0.07]
+
+                        ${category.color}
+                    `}
+                >
+                    <Icon
+                        size={24}
+                        strokeWidth={1.7}
+                        aria-hidden="true"
+                    />
+                </div>
+
+                {/* CATEGORY NUMBER */}
+
+                <span
+                    className="
+                        pt-1
+                        font-mono
+                        text-[10px]
+                        tracking-[0.2em]
+                        text-white/20
+                    "
+                >
+                    {String(index + 1).padStart(2, "0")}
+                </span>
+
+            </div>
+
+            {/* ==============================================
+                TITLE
+            ============================================== */}
+
+            <h3
+                className="
+                    mb-3
+                    text-lg
+                    font-bold
+                    leading-tight
+                    tracking-tight
+                    text-white
+
+                    sm:text-xl
+                    md:text-2xl
+                "
+            >
+                {category.title}
+            </h3>
+
+            {/* ==============================================
+                DESCRIPTION
+            ============================================== */}
+
+            <p
+                className="
+                    mb-6
+                    max-w-md
+                    text-xs
+                    leading-relaxed
+                    text-white/35
+
+                    sm:text-sm
+                "
+            >
+                {category.description}
+            </p>
+
+            {/* ==============================================
+                SKILLS
+            ============================================== */}
+
+            <div
+                className="
+                    flex
+                    flex-wrap
+                    content-start
+                    gap-2
+                "
+            >
+                {category.skills.map((skill) => (
+                    <span
+                        key={skill}
+                        className={`
+                            inline-flex
+                            items-center
+
+                            rounded-full
+
+                            border
+                            border-white/[0.07]
+
+                            bg-white/[0.035]
+
+                            px-2.5
+                            py-1.5
+
+                            font-mono
+                            text-[8px]
+                            uppercase
+                            tracking-wide
+
+                            text-white/40
+
+                            transition-all
+                            duration-200
+
+                            group-hover:text-white/65
+
+                            sm:px-3
+                            sm:text-[9px]
+
+                            ${category.color}
+                        `}
+                    >
+                        <span
+                            className={`
+                                mr-1.5
+                                h-1
+                                w-1
+                                shrink-0
+                                rounded-full
+                                opacity-60
+
+                                ${category.accent}
+                            `}
+                        />
+
+                        <span className="text-inherit">
+                            {skill}
+                        </span>
+                    </span>
+                ))}
+            </div>
+
+            {/* ==============================================
+                BOTTOM ACCENT
+            ============================================== */}
+
+            <div
+                className={`
                     pointer-events-none
                     absolute
                     bottom-0
-                    right-1/4
-                    w-72
+                    left-0
+                    h-[2px]
+                    w-full
+                    origin-left
+                    scale-x-0
+
+                    transition-transform
+                    duration-500
+
+                    group-hover:scale-x-100
+
+                    ${category.accent}
+                `}
+            />
+
+        </motion.div>
+    );
+}
+
+/* ============================================================
+   MAIN COMPONENT
+============================================================ */
+
+export default function TechBento() {
+
+    return (
+        <section
+            className="
+                relative
+                isolate
+                w-full
+                overflow-hidden
+
+                px-4
+
+                pt-16
+                pb-4
+
+                sm:px-6
+                sm:pt-20
+                sm:pb-6
+
+                lg:px-8
+                lg:pl-28
+                lg:pt-24
+                lg:pb-8
+            "
+        >
+
+            {/* =================================================
+                BACKGROUND GLOW
+            ================================================= */}
+
+            <div
+                className="
+                    pointer-events-none
+                    absolute
+                    -z-10
+
+                    left-1/4
+                    top-20
+
                     h-72
-                    sm:w-96
-                    sm:h-96
+                    w-72
+
                     rounded-full
-                    bg-purple-500/5
+                    bg-cyan-500/[0.05]
                     blur-[110px]
+
+                    sm:h-96
+                    sm:w-96
                 "
-      />
+            />
 
-      <div className="relative max-w-7xl mx-auto">
+            <div
+                className="
+                    pointer-events-none
+                    absolute
+                    -z-10
 
-        {/* =================================================
+                    bottom-0
+                    right-1/4
+
+                    h-72
+                    w-72
+
+                    rounded-full
+                    bg-purple-500/[0.05]
+                    blur-[110px]
+
+                    sm:h-96
+                    sm:w-96
+                "
+            />
+
+            {/* =================================================
+                MAIN CONTENT
+            ================================================= */}
+
+            <div
+                className="
+                    relative
+                    mx-auto
+                    w-full
+                    max-w-7xl
+                "
+            >
+
+                {/* =================================================
                     HEADER
                 ================================================= */}
 
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 20,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-            amount: 0.2,
-          }}
-          className="mb-10 sm:mb-12 lg:mb-14"
-        >
-          <p
-            className="
-                            text-[9px]
-                            sm:text-[10px]
+                <motion.div
+                    initial={{
+                        opacity: 0,
+                        y: 20,
+                    }}
+                    whileInView={{
+                        opacity: 1,
+                        y: 0,
+                    }}
+                    viewport={{
+                        once: true,
+                        amount: 0.3,
+                    }}
+                    transition={{
+                        duration: 0.6,
+                    }}
+                    className="
+                        mx-auto
+                        mb-10
+                        max-w-3xl
+                        text-center
+
+                        sm:mb-12
+                    "
+                >
+
+                    {/* EYEBROW */}
+
+                    <p
+                        className="
+                            mb-4
+
                             font-mono
+                            text-[9px]
+                            font-medium
                             uppercase
                             tracking-[0.3em]
-                            sm:tracking-[0.45em]
-                            text-cyan-400
-                            mb-4
-                        "
-          >
-            Core Competencies
-          </p>
 
-          <h2
-            className="
+                            text-cyan-400
+
+                            sm:text-[10px]
+                            sm:tracking-[0.45em]
+                        "
+                    >
+                        Electronics + Embedded + Software
+                    </p>
+
+                    {/* TITLE */}
+
+                    <h2
+                        className="
                             text-4xl
+                            font-black
+                            uppercase
+                            leading-[0.95]
+                            tracking-[-0.055em]
+
+                            text-white
+
                             sm:text-5xl
                             md:text-6xl
                             lg:text-7xl
-                            font-black
-                            tracking-[-0.05em]
-                            text-white
-                            leading-[0.95]
                         "
-          >
-            Technical{" "}
+                    >
+                        Technical{" "}
 
-            <span
-              className="
-                                text-transparent
-                                bg-clip-text
+                        <span
+                            className="
                                 bg-gradient-to-r
                                 from-cyan-400
                                 via-white
                                 to-purple-500
-                            "
-            >
-              Stack.
-            </span>
-          </h2>
 
-          <p
-            className="
+                                bg-clip-text
+                                text-transparent
+                            "
+                        >
+                            Stack.
+                        </span>
+                    </h2>
+
+                    {/* DESCRIPTION */}
+
+                    <p
+                        className="
+                            mx-auto
                             mt-5
                             max-w-2xl
-                            text-sm
-                            sm:text-base
-                            text-white/35
-                            leading-relaxed
-                        "
-          >
-            A multidisciplinary engineering stack combining
-            electronic hardware, embedded firmware, PCB
-            development, industrial interfaces, power systems,
-            and mechanical design.
-          </p>
-        </motion.div>
 
-        {/* =================================================
-                    BENTO GRID
+                            text-xs
+                            leading-relaxed
+
+                            text-white/35
+
+                            sm:text-sm
+                            md:text-base
+                        "
+                    >
+                        Combining electronics engineering,
+                        embedded systems, and software
+                        development to build intelligent,
+                        connected hardware and software solutions.
+                    </p>
+
+                </motion.div>
+
+                {/* =================================================
+                    ENGINEERING BENTO GRID
                 ================================================= */}
 
-        <div
-          className="
+                <div
+                    className="
                         grid
                         grid-cols-1
-                        sm:grid-cols-2
-                        lg:grid-cols-4
+
                         gap-4
-                        sm:gap-5
+
+                        md:grid-cols-2
+                        md:gap-5
+
+                        xl:grid-cols-3
                     "
-        >
-          {categories.map((category, index) => {
-            const Icon = category.icon;
-
-            return (
-              <motion.div
-                key={category.title}
-                initial={{
-                  opacity: 0,
-                  y: 25,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                  amount: 0.1,
-                }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.05,
-                }}
-                whileHover={{
-                  y: -6,
-                }}
-                className={`
-                                    relative
-                                    min-h-[200px]
-                                    sm:min-h-[220px]
-                                    p-6
-                                    sm:p-7
-                                    bg-white/[0.025]
-                                    border
-                                    border-white/[0.08]
-                                    rounded-[1.75rem]
-                                    sm:rounded-[2rem]
-                                    backdrop-blur-xl
-                                    overflow-hidden
-                                    group
-                                    transition-all
-                                    duration-300
-                                    ${category.glow}
-                                    hover:bg-white/[0.045]
-                                `}
-              >
-                {/* Inner glow */}
-
-                <div
-                  className={`
-                                        absolute
-                                        -top-16
-                                        -right-16
-                                        w-36
-                                        h-36
-                                        rounded-full
-                                        blur-[70px]
-                                        opacity-0
-                                        group-hover:opacity-20
-                                        transition-opacity
-                                        duration-500
-                                        bg-current
-                                        ${category.color}
-                                    `}
-                />
-
-                {/* Icon */}
-
-                <div
-                  className={`
-                                        relative
-                                        w-12
-                                        h-12
-                                        rounded-2xl
-                                        bg-white/[0.04]
-                                        border
-                                        border-white/[0.08]
-                                        flex
-                                        items-center
-                                        justify-center
-                                        mb-6
-                                        ${category.color}
-                                        group-hover:scale-110
-                                        transition-transform
-                                        duration-300
-                                    `}
                 >
-                  <Icon size={23} />
+                    {CATEGORIES.map((category, index) => (
+                        <SkillCard
+                            key={category.title}
+                            category={category}
+                            index={index}
+                        />
+                    ))}
                 </div>
 
-                {/* Number */}
-
-                <div
-                  className="
-                                        absolute
-                                        top-6
-                                        right-6
-                                        text-[9px]
-                                        font-mono
-                                        tracking-widest
-                                        text-white/15
-                                    "
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </div>
-
-                {/* Title */}
-
-                <h3
-                  className="
-                                        text-base
-                                        sm:text-lg
-                                        font-bold
-                                        text-white
-                                        tracking-tight
-                                        mb-4
-                                    "
-                >
-                  {category.title}
-                </h3>
-
-                {/* Skills */}
-
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map(
-                    (skill) => (
-                      <span
-                        key={skill}
-                        className="
-                                                    px-2.5
-                                                    py-1.5
-                                                    rounded-full
-                                                    bg-white/[0.035]
-                                                    border
-                                                    border-white/[0.06]
-                                                    text-[8px]
-                                                    sm:text-[9px]
-                                                    font-mono
-                                                    uppercase
-                                                    tracking-wider
-                                                    text-white/35
-                                                    group-hover:text-white/55
-                                                    transition-colors
-                                                "
-                      >
-                        {skill}
-                      </span>
-                    )
-                  )}
-                </div>
-
-                {/* Bottom accent */}
-
-                <div
-                  className={`
-                                        absolute
-                                        bottom-0
-                                        left-0
-                                        w-0
-                                        h-px
-                                        group-hover:w-full
-                                        transition-all
-                                        duration-500
-                                        ${category.color.replace(
-                    "text-",
-                    "bg-"
-                  )}
-                                    `}
-                />
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* =================================================
+                {/* =================================================
                     BOTTOM LABEL
                 ================================================= */}
 
-        <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          whileInView={{
-            opacity: 1,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            delay: 0.3,
-          }}
-          className="
-                        mt-8
-                        sm:mt-10
+                <motion.div
+                    initial={{
+                        opacity: 0,
+                    }}
+                    whileInView={{
+                        opacity: 1,
+                    }}
+                    viewport={{
+                        once: true,
+                    }}
+                    transition={{
+                        duration: 0.6,
+                        delay: 0.2,
+                    }}
+                    className="
+                        mt-6
+
                         flex
                         flex-wrap
+                        items-center
                         justify-center
-                        gap-x-4
+
+                        gap-x-3
                         gap-y-2
-                        text-[8px]
-                        sm:text-[9px]
+
                         font-mono
+                        text-[8px]
                         uppercase
-                        tracking-[0.18em]
+                        tracking-[0.16em]
+
                         text-white/20
+
+                        sm:mt-8
+                        sm:gap-x-4
+                        sm:text-[9px]
+                        sm:tracking-[0.2em]
                     "
-        >
-          <span>Hardware</span>
-          <span className="text-cyan-500/30">•</span>
+                >
+                    <span>Electronics</span>
 
-          <span>Firmware</span>
-          <span className="text-cyan-500/30">•</span>
+                    <span className="text-cyan-500/40">•</span>
 
-          <span>PCB</span>
-          <span className="text-cyan-500/30">•</span>
+                    <span>Embedded Systems</span>
 
-          <span>Industrial</span>
-          <span className="text-cyan-500/30">•</span>
+                    <span className="text-cyan-500/40">•</span>
 
-          <span>IoT</span>
-          <span className="text-cyan-500/30">•</span>
+                    <span>Software</span>
 
-          <span>Power</span>
-          <span className="text-cyan-500/30">•</span>
+                    <span className="text-cyan-500/40">•</span>
 
-          <span>Automation</span>
-        </motion.div>
+                    <span>Integration</span>
+                </motion.div>
 
-      </div>
-    </section>
-  );
+            </div>
+
+        </section>
+    );
 }
