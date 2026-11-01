@@ -15,7 +15,7 @@ import MyPhoto from "@/components/MyPhoto";
 import TechBento from "@/components/TechBento";
 import AboutSection from "@/components/Aboutsection";
 
-// import CyberScanner from "@/experiment_components/CyberScanner";
+// import CyberScanner from "@/experiment_components/CyberScanner"
 import Earth from "@/experiment_components/Earth";
 
 export default function Home() {
