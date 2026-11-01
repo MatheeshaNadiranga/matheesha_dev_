@@ -199,7 +199,11 @@ const STATS = [
   },
 ];
 
+// Software items come first so they read as the lead skills.
 const EXPERTISE = [
+  "Software Engineering",
+  "Software Development",
+  "Firmware Development",
   "Embedded Systems",
   "PCB Design",
   "Analog Electronics",
@@ -215,8 +219,10 @@ const EXPERTISE = [
   "Industrial Controllers",
   "Low Power Design",
   "SolidWorks",
-  "Firmware Development",
 ];
+
+// Chips listed here get the highlighted cyan style.
+const FEATURED = new Set(["Software Engineering", "Software Development"]);
 
 /* ============================================================
    COMPONENT
@@ -255,45 +261,51 @@ export default function AboutSection() {
         relative
         w-full
         overflow-hidden
-        py-20
-        sm:py-24
-        lg:py-28
+        py-12
+        sm:py-16
+        lg:py-20
         px-4
         sm:px-6
         lg:px-8
       "
     >
-      {/* Background glow */}
+      {/* Background glow (radial gradients are much cheaper than blur filters) */}
       <div
+        aria-hidden="true"
         className="
           pointer-events-none
           absolute
           -top-32
-          left-0
-          w-72
-          h-72
-          sm:w-96
-          sm:h-96
+          -left-24
+          w-96
+          h-96
+          sm:w-[30rem]
+          sm:h-[30rem]
           rounded-full
-          bg-cyan-500/8
-          blur-[110px]
         "
+        style={{
+          background:
+            "radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, rgba(6, 182, 212, 0) 70%)",
+        }}
       />
 
       <div
+        aria-hidden="true"
         className="
           pointer-events-none
           absolute
-          bottom-0
-          right-0
-          w-72
-          h-72
-          sm:w-96
-          sm:h-96
+          -bottom-24
+          -right-24
+          w-96
+          h-96
+          sm:w-[30rem]
+          sm:h-[30rem]
           rounded-full
-          bg-purple-500/8
-          blur-[110px]
         "
+        style={{
+          background:
+            "radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, rgba(168, 85, 247, 0) 70%)",
+        }}
       />
 
       <motion.div
@@ -318,12 +330,13 @@ export default function AboutSection() {
                 font-mono
                 text-cyan-400
                 uppercase
-                tracking-[0.35em]
-                sm:tracking-[0.45em]
+                tracking-[0.2em]
+                sm:tracking-[0.3em]
+                leading-relaxed
                 mb-5
               "
             >
-              Engineering Profile
+              Electronic + Embedded + Software Engineering
             </motion.p>
 
             <motion.h2
@@ -369,24 +382,31 @@ export default function AboutSection() {
               "
             >
               <p>
-                I'm Matheesha Nadiranga De Silva, an Electronic Engineer
-                focused on building practical embedded and electronic
-                systems from the hardware level to firmware.
-              </p>
-
-              <p>
-                My work spans analog and digital electronics, custom PCB
-                development, microcontroller firmware, communication
-                interfaces, industrial controller design, and low-power
-                embedded systems.
-              </p>
-
-              <p>
-                I currently work as an{" "}
+                I'm Matheesha Nadiranga De Silva, a{" "}
                 <span className="text-cyan-300 font-medium">
-                  Electronic Engineer at Iconic Devices
+                  Software Engineer and Electronic Engineer
                 </span>{" "}
-                while following a Pearson HND in Mechatronics.
+                who builds practical systems from the hardware level up
+                through firmware and software.
+              </p>
+
+              <p>
+                I completed a{" "}
+                <span className="text-cyan-300 font-medium">
+                  Higher Diploma in Software Engineering at ACPT, Sri Lanka
+                </span>
+                . My work spans software and firmware development, embedded
+                systems, analog and digital electronics, custom PCB
+                development, communication interfaces, industrial
+                controller design, and low-power design.
+              </p>
+
+              <p>
+                I completed a 3-month internship as an{" "}
+                <span className="text-cyan-300 font-medium">
+                  Electronic Engineering Intern at Iconic Devices
+                </span>
+                , and I am now following a Pearson HND in Mechatronics.
               </p>
             </motion.div>
 
@@ -477,27 +497,27 @@ export default function AboutSection() {
                   transition={{
                     delay: 0.45 + index * 0.035,
                   }}
-                  className="
+                  className={`
                     max-w-full
                     px-3
                     sm:px-4
                     py-1.5
-                    bg-white/[0.035]
                     border
-                    border-white/[0.08]
                     rounded-full
                     text-[9px]
                     sm:text-[10px]
                     font-mono
-                    text-white/40
                     uppercase
                     tracking-wider
-                    hover:border-cyan-500/30
-                    hover:text-cyan-400/80
                     transition-all
                     duration-300
                     cursor-default
-                  "
+                    ${
+                      FEATURED.has(item)
+                        ? "bg-cyan-400/10 border-cyan-400/30 text-cyan-300 hover:bg-cyan-400/20"
+                        : "bg-white/[0.035] border-white/[0.08] text-white/40 hover:border-cyan-500/30 hover:text-cyan-400/80"
+                    }
+                  `}
                 >
                   {item}
                 </motion.span>
@@ -529,14 +549,17 @@ export default function AboutSection() {
           >
             {/* Glow behind object */}
             <div
+              aria-hidden="true"
               className="
                 absolute
                 inset-0
                 rounded-full
-                bg-cyan-500/5
-                blur-[80px]
                 pointer-events-none
               "
+              style={{
+                background:
+                  "radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, rgba(6, 182, 212, 0) 65%)",
+              }}
             />
 
             <Canvas

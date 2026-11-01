@@ -328,7 +328,7 @@ export default function Connect() {
                   text-white/45
                 "
               >
-                Available for electronics engineering,
+                Available for software engineering,
                 embedded systems, PCB development,
                 industrial controller design,
                 firmware development, and hardware

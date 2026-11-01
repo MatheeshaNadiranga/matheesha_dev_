@@ -1,20 +1,44 @@
+
+"use client";
+
 import {
     motion,
     useScroll,
     useTransform,
+    type MotionValue,
 } from "framer-motion";
 
 import {
-   
+    Activity,
+    AppWindow,
+    BatteryCharging,
+    Binary,
+    Box,
+    Braces,
+    Cable,
     CircuitBoard,
+    Cloud,
+    Code2,
+    Cpu,
+    Database,
+    GitBranch,
+    Gauge,
+    Globe,
+    Layers,
+    Network,
+    Radio,
+    Server,
+    Terminal,
+    Wifi,
+    Wrench,
+    Zap,
+    Workflow,
     type LucideIcon,
 } from "lucide-react";
 
 import {
     Suspense,
-    useEffect,
     useRef,
-    useState,
 } from "react";
 
 import {
@@ -33,105 +57,181 @@ import * as THREE from "three";
    TYPES
 ============================================================ */
 
-type SkillIconType =
-    | "image"
-    | "label"
-    | "lucide";
-
 type Skill = {
     name: string;
-    iconType: SkillIconType;
-    icon?: string;
-    Icon?: LucideIcon;
-    badge?: string;
+    Icon: LucideIcon;
+};
+
+type SkillGroup = {
+    title: string;
+    subtitle: string;
+    Icon: LucideIcon;
+    direction: "left" | "right";
+    skills: Skill[];
 };
 
 /* ============================================================
-   SKILLS
+   ENGINEERING SKILLS
 ============================================================ */
 
-const SKILL_ROWS: Skill[][] = [
-    [
-        {
-            name: "STM32",
-            iconType: "label",
-            badge: "STM",
-        },
-        {
-            name: "ESP32",
-            iconType: "label",
-            badge: "ESP",
-        },
-        {
-            name: "AVR",
-            iconType: "label",
-            badge: "AVR",
-        },
-        {
-            name: "C",
-            iconType: "image",
-            icon:
-                "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg",
-        },
-        {
-            name: "C++",
-            iconType: "image",
-            icon:
-                "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
-        },
-        {
-            name: "Python",
-            iconType: "image",
-            icon:
-                "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-        },
-        {
-            name: "Git",
-            iconType: "image",
-            icon:
-                "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-        },
-    ],
+const SKILL_GROUPS: SkillGroup[] = [
+    {
+        title: "Electronics Engineering",
+        subtitle: "Circuit Design • PCB Development • Power Electronics",
+        Icon: CircuitBoard,
+        direction: "left",
 
-    [
-        {
-            name: "Altium Designer",
-            iconType: "label",
-            badge: "ALT",
-        },
-        {
-            name: "KiCad",
-            iconType: "label",
-            badge: "KIC",
-        },
-        {
-            name: "SolidWorks",
-            iconType: "label",
-            badge: "SW",
-        },
-        {
-            name: "PlatformIO",
-            iconType: "label",
-            badge: "PIO",
-        },
-        {
-            name: "VS Code",
-            iconType: "image",
-            icon:
-                "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
-        },
-        {
-            name: "GitHub",
-            iconType: "image",
-            icon:
-                "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
-        },
-        {
-            name: "Electronics",
-            iconType: "lucide",
-            Icon: CircuitBoard,
-        },
-    ],
+        skills: [
+            {
+                name: "Circuit Design",
+                Icon: CircuitBoard,
+            },
+            {
+                name: "PCB Design",
+                Icon: Layers,
+            },
+            {
+                name: "Altium Designer",
+                Icon: CircuitBoard,
+            },
+            {
+                name: "KiCad",
+                Icon: Workflow,
+            },
+            {
+                name: "Analog Design",
+                Icon: Activity,
+            },
+            {
+                name: "Power Electronics",
+                Icon: Zap,
+            },
+            {
+                name: "Battery Systems",
+                Icon: BatteryCharging,
+            },
+            {
+                name: "Industrial Control",
+                Icon: Gauge,
+            },
+            {
+                name: "SolidWorks",
+                Icon: Box,
+            },
+            {
+                name: "Prototyping",
+                Icon: Wrench,
+            },
+            {
+                name: "Test & Measurement",
+                Icon: Cable,
+            },
+        ],
+    },
+
+    {
+        title: "Embedded Systems Engineering",
+        subtitle: "Microcontrollers • Firmware • Communication Protocols",
+        Icon: Cpu,
+        direction: "right",
+
+        skills: [
+            {
+                name: "STM32",
+                Icon: Cpu,
+            },
+            {
+                name: "ESP32",
+                Icon: Wifi,
+            },
+            {
+                name: "AVR",
+                Icon: Binary,
+            },
+            {
+                name: "Embedded C",
+                Icon: Code2,
+            },
+            {
+                name: "C / C++",
+                Icon: Braces,
+            },
+            {
+                name: "Arduino",
+                Icon: CircuitBoard,
+            },
+            {
+                name: "UART / SPI / I2C",
+                Icon: Network,
+            },
+            {
+                name: "MQTT / IoT",
+                Icon: Radio,
+            },
+            {
+                name: "RTOS",
+                Icon: Gauge,
+            },
+            {
+                name: "Firmware Development",
+                Icon: Terminal,
+            },
+        ],
+    },
+
+    {
+        title: "Software Engineering",
+        subtitle: "Application Development • Backend • Database Systems",
+        Icon: Code2,
+        direction: "left",
+
+        skills: [
+            {
+                name: "JavaScript",
+                Icon: Code2,
+            },
+            {
+                name: "TypeScript",
+                Icon: Braces,
+            },
+            {
+                name: "React",
+                Icon: AppWindow,
+            },
+            {
+                name: "Node.js",
+                Icon: Server,
+            },
+            {
+                name: "Python",
+                Icon: Terminal,
+            },
+            {
+                name: "Java",
+                Icon: Binary,
+            },
+            {
+                name: "Spring Boot",
+                Icon: Workflow,
+            },
+            {
+                name: "MySQL",
+                Icon: Database,
+            },
+            {
+                name: "REST APIs",
+                Icon: Globe,
+            },
+            {
+                name: "Git / GitHub",
+                Icon: GitBranch,
+            },
+            {
+                name: "DevOps",
+                Icon: Cloud,
+            },
+        ],
+    },
 ];
 
 /* ============================================================
@@ -141,43 +241,68 @@ const SKILL_ROWS: Skill[][] = [
 function EmbeddedCoreScene({
     scrollProgress,
 }: {
-    scrollProgress: number;
+    scrollProgress: MotionValue<number>;
 }) {
     const groupRef = useRef<THREE.Group | null>(null);
+
+    /* ========================================================
+       3D ANIMATION
+
+       Read MotionValue directly.
+       This avoids updating React state during scrolling.
+    ======================================================== */
 
     useFrame((state) => {
         const group = groupRef.current;
 
         if (!group) return;
 
+        const progress = scrollProgress.get();
+
         group.rotation.y =
-            scrollProgress * Math.PI * 3.5 +
+            progress * Math.PI * 3 +
             state.clock.elapsedTime * 0.12;
 
         group.rotation.x =
-            Math.sin(
-                state.clock.elapsedTime * 0.35
-            ) * 0.06;
+            Math.sin(state.clock.elapsedTime * 0.35) * 0.055;
     });
 
-    const pins = Array.from({
-        length: 8,
-    });
+    const pins = Array.from(
+        { length: 8 },
+        (_, index) => index
+    );
 
-    const signalNodes = Array.from({
-        length: 12,
-    });
+    const signalNodes = Array.from(
+        { length: 12 },
+        (_, index) => index
+    );
 
     return (
         <Float
-            speed={1.6}
-            rotationIntensity={0.25}
-            floatIntensity={0.6}
+            speed={1.5}
+            rotationIntensity={0.18}
+            floatIntensity={0.35}
         >
             <group ref={groupRef}>
 
                 {/* =========================================
-                    MAIN MCU PACKAGE
+                    OUTER CIRCUIT RING
+                ========================================= */}
+
+                <mesh>
+                    <torusGeometry
+                        args={[2.35, 0.012, 8, 100]}
+                    />
+
+                    <meshBasicMaterial
+                        color="#06b6d4"
+                        transparent
+                        opacity={0.3}
+                    />
+                </mesh>
+
+                {/* =========================================
+                    MAIN MICROCONTROLLER PACKAGE
                 ========================================= */}
 
                 <mesh position={[0, 0, 0]}>
@@ -187,20 +312,20 @@ function EmbeddedCoreScene({
 
                     <meshStandardMaterial
                         color="#111827"
-                        metalness={0.9}
+                        metalness={0.85}
                         roughness={0.22}
                         emissive="#031b24"
-                        emissiveIntensity={1.2}
+                        emissiveIntensity={0.8}
                     />
                 </mesh>
 
                 {/* =========================================
-                    MCU TOP
+                    MCU TOP SURFACE
                 ========================================= */}
 
                 <mesh position={[0, 0, 0.24]}>
                     <boxGeometry
-                        args={[1.05, 1.05, 0.04]}
+                        args={[1.1, 1.1, 0.04]}
                     />
 
                     <meshStandardMaterial
@@ -211,12 +336,12 @@ function EmbeddedCoreScene({
                 </mesh>
 
                 {/* =========================================
-                    GLOWING PROCESSOR CORE
+                    PROCESSOR CORE
                 ========================================= */}
 
                 <mesh position={[0, 0, 0.28]}>
                     <boxGeometry
-                        args={[0.55, 0.55, 0.03]}
+                        args={[0.55, 0.55, 0.035]}
                     />
 
                     <meshBasicMaterial
@@ -224,123 +349,81 @@ function EmbeddedCoreScene({
                     />
                 </mesh>
 
+                {/* CORE GLOW */}
+
                 <mesh position={[0, 0, 0.30]}>
                     <boxGeometry
-                        args={[0.70, 0.70, 0.02]}
+                        args={[0.75, 0.75, 0.02]}
                     />
 
                     <meshBasicMaterial
                         color="#06b6d4"
                         transparent
-                        opacity={0.08}
+                        opacity={0.09}
                     />
                 </mesh>
 
                 {/* =========================================
-                    MCU PINS
+                    MICROCONTROLLER PINS
                 ========================================= */}
 
-                {pins.map((_, i) => {
-                    const offset =
-                        -0.60 + i * 0.17;
+                {pins.map((index) => {
+                    const offset = -0.60 + index * 0.17;
+
+                    const color =
+                        index % 2 === 0
+                            ? "#06b6d4"
+                            : "#a855f7";
 
                     return (
-                        <group key={`pin-${i}`}>
+                        <group key={`pin-${index}`}>
 
-                            {/* LEFT */}
+                            {/* LEFT PINS */}
 
                             <mesh
-                                position={[
-                                    -1.02,
-                                    offset,
-                                    0,
-                                ]}
+                                position={[-1.02, offset, 0]}
                             >
                                 <boxGeometry
-                                    args={[
-                                        0.32,
-                                        0.035,
-                                        0.035,
-                                    ]}
+                                    args={[0.32, 0.035, 0.035]}
                                 />
 
-                                <meshBasicMaterial
-                                    color={
-                                        i % 2 === 0
-                                            ? "#06b6d4"
-                                            : "#a855f7"
-                                    }
-                                />
+                                <meshBasicMaterial color={color} />
                             </mesh>
 
-                            {/* RIGHT */}
+                            {/* RIGHT PINS */}
 
                             <mesh
-                                position={[
-                                    1.02,
-                                    offset,
-                                    0,
-                                ]}
+                                position={[1.02, offset, 0]}
                             >
                                 <boxGeometry
-                                    args={[
-                                        0.32,
-                                        0.035,
-                                        0.035,
-                                    ]}
+                                    args={[0.32, 0.035, 0.035]}
                                 />
 
-                                <meshBasicMaterial
-                                    color={
-                                        i % 2 === 0
-                                            ? "#a855f7"
-                                            : "#06b6d4"
-                                    }
-                                />
+                                <meshBasicMaterial color={color} />
                             </mesh>
 
-                            {/* TOP */}
+                            {/* TOP PINS */}
 
                             <mesh
-                                position={[
-                                    offset,
-                                    1.02,
-                                    0,
-                                ]}
+                                position={[offset, 1.02, 0]}
                             >
                                 <boxGeometry
-                                    args={[
-                                        0.035,
-                                        0.32,
-                                        0.035,
-                                    ]}
+                                    args={[0.035, 0.32, 0.035]}
                                 />
 
-                                <meshBasicMaterial
-                                    color="#06b6d4"
-                                />
+                                <meshBasicMaterial color="#06b6d4" />
                             </mesh>
 
-                            {/* BOTTOM */}
+                            {/* BOTTOM PINS */}
 
                             <mesh
-                                position={[
-                                    offset,
-                                    -1.02,
-                                    0,
-                                ]}
+                                position={[offset, -1.02, 0]}
                             >
                                 <boxGeometry
-                                    args={[
-                                        0.035,
-                                        0.32,
-                                        0.035,
-                                    ]}
+                                    args={[0.035, 0.32, 0.035]}
                                 />
 
-                                <meshBasicMaterial
-                                    color="#a855f7"
-                                />
+                                <meshBasicMaterial color="#a855f7" />
                             </mesh>
 
                         </group>
@@ -351,43 +434,30 @@ function EmbeddedCoreScene({
                     SIGNAL NODES
                 ========================================= */}
 
-                {signalNodes.map((_, i) => {
+                {signalNodes.map((index) => {
                     const angle =
-                        (i / signalNodes.length) *
+                        (index / signalNodes.length) *
                         Math.PI *
                         2;
 
                     const radius = 2.15;
 
-                    const x =
-                        Math.cos(angle) * radius;
-
-                    const y =
-                        Math.sin(angle) * radius;
+                    const x = Math.cos(angle) * radius;
+                    const y = Math.sin(angle) * radius;
 
                     const signalColor =
-                        i % 2 === 0
+                        index % 2 === 0
                             ? "#06b6d4"
                             : "#a855f7";
 
                     return (
-                        <group
-                            key={`signal-${i}`}
-                        >
+                        <group key={`signal-${index}`}>
 
-                            <mesh
-                                position={[
-                                    x,
-                                    y,
-                                    0,
-                                ]}
-                            >
+                            {/* SIGNAL NODE */}
+
+                            <mesh position={[x, y, 0]}>
                                 <sphereGeometry
-                                    args={[
-                                        0.075,
-                                        12,
-                                        12,
-                                    ]}
+                                    args={[0.075, 12, 12]}
                                 />
 
                                 <meshStandardMaterial
@@ -397,30 +467,24 @@ function EmbeddedCoreScene({
                                 />
                             </mesh>
 
+                            {/* SIGNAL CONNECTION */}
+
                             <mesh
                                 position={[
                                     x * 0.78,
                                     y * 0.78,
                                     0,
                                 ]}
-                                rotation={[
-                                    0,
-                                    0,
-                                    angle,
-                                ]}
+                                rotation={[0, 0, angle]}
                             >
                                 <boxGeometry
-                                    args={[
-                                        0.55,
-                                        0.018,
-                                        0.018,
-                                    ]}
+                                    args={[0.55, 0.018, 0.018]}
                                 />
 
                                 <meshBasicMaterial
                                     color={signalColor}
                                     transparent
-                                    opacity={0.30}
+                                    opacity={0.3}
                                 />
                             </mesh>
 
@@ -429,30 +493,29 @@ function EmbeddedCoreScene({
                 })}
 
                 {/* =========================================
-                    3D STATUS LABEL
+                    STATUS LABEL
                 ========================================= */}
 
                 <Html
-                    position={[0, -1.8, 0]}
+                    position={[0, -1.85, 0]}
                     center
                     transform
+                    distanceFactor={7}
                 >
                     <div
                         className="
-                            px-3
-                            sm:px-4
-                            py-1.5
-                            bg-black/85
-                            border
-                            border-cyan-500/30
-                            rounded-lg
-                            text-[8px]
-                            sm:text-[9px]
-                            font-mono
-                            text-cyan-400
-                            tracking-wider
                             whitespace-nowrap
-                            shadow-[0_0_25px_rgba(6,182,212,0.12)]
+                            rounded-lg
+                            border border-cyan-500/30
+                            bg-black/90
+                            px-3 py-1.5
+                            font-mono
+                            text-[8px]
+                            tracking-wider
+                            text-cyan-400
+                            shadow-[0_0_25px_rgba(6,182,212,0.15)]
+                            sm:px-4
+                            sm:text-[9px]
                         "
                     >
                         EMBEDDED_CONTROLLER // ONLINE
@@ -473,227 +536,299 @@ function SkillCard({
 }: {
     skill: Skill;
 }) {
+    const Icon = skill.Icon;
+
     return (
         <motion.div
             whileHover={{
-                scale: 1.08,
-                y: -6,
+                scale: 1.055,
+                y: -5,
             }}
             whileTap={{
                 scale: 0.97,
             }}
+            transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 20,
+            }}
+            aria-label={skill.name}
             className="
                 group
-                relative
-                shrink-0
-
-                w-[84px]
-                h-[84px]
-
-                sm:w-[92px]
-                sm:h-[92px]
-
-                md:w-24
-                md:h-24
-
-                lg:w-28
-                lg:h-28
-
-                bg-white/[0.045]
-                border
-                border-white/10
-
-                rounded-[1.5rem]
-                sm:rounded-[1.75rem]
-                md:rounded-[2rem]
-
                 flex
+                h-[112px]
+                w-[112px]
+                shrink-0
+                flex-col
                 items-center
                 justify-center
+                gap-3
 
+                rounded-2xl
+                border border-white/[0.09]
+                bg-white/[0.035]
                 backdrop-blur-xl
 
-                transition-all
+                shadow-lg
+                shadow-black/10
+
+                transition-colors
                 duration-300
 
-                hover:bg-white/[0.08]
-                hover:border-cyan-400/25
+                hover:border-cyan-400/30
+                hover:bg-white/[0.075]
 
-                shadow-2xl
+                sm:h-[124px]
+                sm:w-[124px]
+                sm:rounded-3xl
 
-                cursor-default
+                md:h-[132px]
+                md:w-[132px]
             "
         >
 
-            {/* ==============================================
-                DEVICON IMAGE
-            ============================================== */}
+            {/* ICON */}
 
-            {skill.iconType === "image" &&
-                skill.icon && (
-                    <img
-                        src={skill.icon}
-                        alt={skill.name}
-                        loading="lazy"
-                        className="
-                            w-9
-                            h-9
+            <div
+                className="
+                    flex
+                    h-11
+                    w-11
+                    items-center
+                    justify-center
 
-                            sm:w-10
-                            sm:h-10
+                    rounded-xl
+                    border border-cyan-400/10
+                    bg-cyan-400/[0.06]
 
-                            md:w-12
-                            md:h-12
+                    transition-all
+                    duration-300
 
-                            lg:w-14
-                            lg:h-14
+                    group-hover:border-cyan-400/30
+                    group-hover:bg-cyan-400/[0.12]
+                    group-hover:shadow-[0_0_22px_rgba(6,182,212,0.12)]
 
-                            object-contain
-
-                            transition-transform
-                            duration-300
-
-                            group-hover:scale-110
-                        "
-                    />
-                )}
-
-            {/* ==============================================
-                HARDWARE / SOFTWARE BADGE
-            ============================================== */}
-
-            {skill.iconType === "label" && (
-                <div
+                    sm:h-12
+                    sm:w-12
+                "
+            >
+                <Icon
+                    size={26}
+                    strokeWidth={1.7}
+                    aria-hidden="true"
                     className="
-                        flex
-                        flex-col
-                        items-center
-                        justify-center
-                        text-center
-                        px-2
+                        text-cyan-400
+                        transition-all
+                        duration-300
+                        group-hover:scale-110
+                        group-hover:text-cyan-300
+                        sm:h-7
+                        sm:w-7
                     "
-                >
+                />
+            </div>
 
-                    <div
-                        className="
-                            text-xl
-                            sm:text-2xl
-                            md:text-3xl
+            {/* SKILL NAME */}
 
-                            font-black
-                            tracking-tighter
+            <span
+                className="
+                    max-w-full
+                    px-2
+                    text-center
+                    text-[9px]
+                    font-semibold
+                    leading-tight
+                    tracking-wide
+                    text-white/55
 
-                            text-transparent
-                            bg-clip-text
-                            bg-gradient-to-br
-                            from-cyan-300
-                            to-purple-500
+                    transition-colors
+                    duration-300
 
-                            transition-transform
-                            duration-300
+                    group-hover:text-white/90
 
-                            group-hover:scale-110
-                        "
-                    >
-                        {skill.badge}
-                    </div>
+                    sm:text-[10px]
+                    md:text-[11px]
+                "
+            >
+                {skill.name}
+            </span>
 
-                    <div
-                        className="
-                            text-[7px]
-                            sm:text-[8px]
+        </motion.div>
+    );
+}
 
-                            font-mono
-                            text-white/30
+/* ============================================================
+   SKILL TRACK
+============================================================ */
 
-                            mt-1
+function SkillTrack({
+    group,
+    index,
+    scrollProgress,
+}: {
+    group: SkillGroup;
+    index: number;
+    scrollProgress: MotionValue<number>;
+}) {
+    const x = useTransform(
+        scrollProgress,
+        [0, 1],
+        group.direction === "left"
+            ? [35, -105]
+            : [-35, 105]
+    );
 
-                            uppercase
-                            tracking-wider
+    const CategoryIcon = group.Icon;
 
-                            leading-tight
-                        "
-                    >
-                        {skill.name}
-                    </div>
-
-                </div>
-            )}
-
-            {/* ==============================================
-                LUCIDE ICON
-            ============================================== */}
-
-            {skill.iconType === "lucide" &&
-                skill.Icon && (
-                    <skill.Icon
-                        size={42}
-                        className="
-                            text-cyan-400
-
-                            transition-transform
-                            duration-300
-
-                            group-hover:scale-110
-                        "
-                    />
-                )}
+    return (
+        <div className="w-full min-w-0">
 
             {/* ==============================================
-                TOOLTIP
+                CATEGORY HEADER
             ============================================== */}
 
             <div
                 className="
-                    absolute
+                    mb-3
+                    flex
+                    flex-wrap
+                    items-center
+                    justify-between
+                    gap-2
 
-                    -bottom-9
-                    sm:-bottom-10
-
-                    left-1/2
-                    -translate-x-1/2
-
-                    opacity-0
-                    group-hover:opacity-100
-
-                    transition-all
-                    duration-200
-
-                    bg-stone-900/95
-
-                    border
-                    border-white/15
-
-                    text-white
-
-                    text-[8px]
-                    sm:text-[9px]
-
-                    font-bold
-
-                    px-2.5
-                    sm:px-3
-
-                    py-1
-
-                    rounded-full
-
-                    uppercase
-                    tracking-wider
-
-                    whitespace-nowrap
-
-                    pointer-events-none
-
-                    shadow-xl
-
-                    z-30
+                    px-1
+                    sm:mb-4
                 "
             >
-                {skill.name}
+                <div className="flex min-w-0 items-center gap-3">
+
+                    <div
+                        className="
+                            flex
+                            h-9
+                            w-9
+                            shrink-0
+                            items-center
+                            justify-center
+
+                            rounded-xl
+                            border border-cyan-400/15
+                            bg-cyan-400/[0.07]
+                        "
+                    >
+                        <CategoryIcon
+                            size={19}
+                            strokeWidth={1.7}
+                            className="text-cyan-400"
+                            aria-hidden="true"
+                        />
+                    </div>
+
+                    <div className="min-w-0">
+
+                        <h3
+                            className="
+                                text-xs
+                                font-bold
+                                tracking-wide
+                                text-white/85
+
+                                sm:text-sm
+                                md:text-base
+                            "
+                        >
+                            {group.title}
+                        </h3>
+
+                        <p
+                            className="
+                                mt-0.5
+                                text-[8px]
+                                leading-relaxed
+                                text-white/30
+
+                                sm:text-[9px]
+                            "
+                        >
+                            {group.subtitle}
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <span
+                    className="
+                        shrink-0
+                        font-mono
+                        text-[9px]
+                        tracking-widest
+                        text-cyan-400/40
+                    "
+                >
+                    0{index + 1}
+                </span>
+
             </div>
 
-        </motion.div>
+            {/* ==============================================
+                RESPONSIVE SKILL TRACK
+            ============================================== */}
+
+            <div
+                className="
+                    w-full
+                    overflow-hidden
+                "
+                style={{
+                    maskImage:
+                        "linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
+                    WebkitMaskImage:
+                        "linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
+                }}
+                aria-label={`${group.title} skills`}
+            >
+                <motion.div
+                    style={{ x }}
+                    className="
+                        flex
+                        w-max
+                        items-center
+                        gap-3
+                        py-4
+
+                        sm:gap-4
+                    "
+                >
+
+                    {/* Duplicate the track to prevent empty space */}
+
+                    {[0, 1].map((copy) => (
+                        <div
+                            key={`track-${copy}`}
+                            className="
+                                flex
+                                shrink-0
+                                items-center
+                                gap-3
+
+                                sm:gap-4
+                            "
+                            aria-hidden={copy === 1}
+                        >
+                            {group.skills.map((skill) => (
+                                <SkillCard
+                                    key={`${copy}-${skill.name}`}
+                                    skill={skill}
+                                />
+                            ))}
+                        </div>
+                    ))}
+
+                </motion.div>
+            </div>
+
+        </div>
     );
 }
 
@@ -702,15 +837,13 @@ function SkillCard({
 ============================================================ */
 
 export default function SkillsSpinner() {
-    const containerRef =
-        useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLElement | null>(null);
 
-    const [scrollVal, setScrollVal] =
-        useState(0);
+    /* ========================================================
+       SCROLL PROGRESS
+    ======================================================== */
 
-    const {
-        scrollYProgress,
-    } = useScroll({
+    const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: [
             "start end",
@@ -719,57 +852,23 @@ export default function SkillsSpinner() {
     });
 
     /* ========================================================
-       SCROLL LISTENER
-    ======================================================== */
-
-    useEffect(() => {
-        const unsubscribe =
-            scrollYProgress.on(
-                "change",
-                (latest) => {
-                    setScrollVal(latest);
-                }
-            );
-
-        return () => {
-            unsubscribe();
-        };
-    }, [scrollYProgress]);
-
-    /* ========================================================
-       ROW MOVEMENT
-    ======================================================== */
-
-    const row1X = useTransform(
-        scrollYProgress,
-        [0, 1],
-        [80, -80]
-    );
-
-    const row2X = useTransform(
-        scrollYProgress,
-        [0, 1],
-        [-80, 80]
-    );
-
-    /* ========================================================
        SECTION OPACITY
     ======================================================== */
 
     const opacity = useTransform(
         scrollYProgress,
-        [0, 0.15, 0.85, 1],
+        [0, 0.08, 0.92, 1],
         [0, 1, 1, 0]
     );
 
     /* ========================================================
-       3D CORE MOVEMENT
+       3D CONTROLLER MOVEMENT
     ======================================================== */
 
     const coreY = useTransform(
         scrollYProgress,
         [0, 1],
-        [15, -15]
+        [14, -14]
     );
 
     return (
@@ -777,24 +876,27 @@ export default function SkillsSpinner() {
             ref={containerRef}
             className="
                 relative
+                isolate
                 w-full
                 overflow-hidden
 
                 bg-transparent
 
-                pt-24
-                sm:pt-28
-                lg:pt-32
-
-                pb-16
-                sm:pb-20
-                lg:pb-24
-
                 px-4
-                sm:px-6
+                
 
-                lg:pl-28
-                lg:pr-8
+                sm:px-6
+                
+                pt-20
+                pb-4
+
+                sm:pt-24
+                sm:pb-6
+
+                lg:pt-32
+                lg:pb-8
+                lg:px-8
+                
             "
         >
 
@@ -806,23 +908,18 @@ export default function SkillsSpinner() {
                 className="
                     pointer-events-none
                     absolute
-
-                    top-1/3
                     left-1/2
-
+                    top-[30%]
+                    -z-10
+                    h-[280px]
+                    w-[280px]
                     -translate-x-1/2
-
-                    w-[450px]
-                    sm:w-[650px]
-                    lg:w-[850px]
-
-                    h-[300px]
-
-                    bg-cyan-500/5
-
-                    blur-[110px]
-
                     rounded-full
+                    bg-cyan-500/[0.07]
+                    blur-[100px]
+
+                    sm:h-[450px]
+                    sm:w-[450px]
                 "
             />
 
@@ -830,38 +927,36 @@ export default function SkillsSpinner() {
                 className="
                     pointer-events-none
                     absolute
-
                     bottom-0
                     right-0
-
-                    w-72
+                    -z-10
                     h-72
-
-                    bg-purple-500/5
-
-                    blur-[100px]
-
+                    w-72
                     rounded-full
+                    bg-purple-500/[0.055]
+                    blur-[100px]
                 "
             />
 
+            {/* =================================================
+                MAIN CONTENT
+            ================================================= */}
+
             <motion.div
-                style={{
-                    opacity,
-                }}
+                style={{ opacity }}
                 className="
                     relative
+                    mx-auto
+                    flex
                     w-full
                     max-w-7xl
-                    mx-auto
-
-                    flex
                     flex-col
                     items-center
 
-                    gap-8
-                    sm:gap-10
-                    lg:gap-12
+                    gap-10
+
+                    sm:gap-12
+                    lg:gap-14
                 "
             >
 
@@ -869,17 +964,12 @@ export default function SkillsSpinner() {
                     HEADER
                 ================================================= */}
 
-                <div
-                    className="
-                        w-full
-                        text-center
-                    "
-                >
+                <div className="w-full text-center">
 
                     <motion.p
                         initial={{
                             opacity: 0,
-                            y: 10,
+                            y: 12,
                         }}
                         whileInView={{
                             opacity: 1,
@@ -887,30 +977,31 @@ export default function SkillsSpinner() {
                         }}
                         viewport={{
                             once: true,
+                            amount: 0.5,
+                        }}
+                        transition={{
+                            duration: 0.6,
                         }}
                         className="
-                            text-[9px]
-                            sm:text-[10px]
-
+                            mb-4
                             font-mono
-
+                            text-[9px]
+                            font-medium
+                            uppercase
+                            tracking-[0.3em]
                             text-cyan-400
 
-                            uppercase
-
-                            tracking-[0.3em]
+                            sm:text-[10px]
                             sm:tracking-[0.45em]
-
-                            mb-4
                         "
                     >
-                        Hardware + Firmware
+                        Electronics + Embedded + Software
                     </motion.p>
 
                     <motion.h2
                         initial={{
                             opacity: 0,
-                            y: 25,
+                            y: 22,
                         }}
                         whileInView={{
                             opacity: 1,
@@ -918,37 +1009,35 @@ export default function SkillsSpinner() {
                         }}
                         viewport={{
                             once: true,
+                            amount: 0.5,
                         }}
                         transition={{
+                            duration: 0.7,
                             delay: 0.08,
                         }}
                         className="
                             text-4xl
+                            font-black
+                            uppercase
+                            leading-[0.95]
+                            tracking-[-0.055em]
+                            text-white
+
                             sm:text-5xl
                             md:text-7xl
                             lg:text-8xl
-
-                            font-black
-
-                            text-white
-
-                            tracking-[-0.05em]
-
-                            uppercase
-
-                            leading-[0.9]
                         "
                     >
                         Engineering{" "}
 
                         <span
                             className="
-                                text-transparent
-                                bg-clip-text
                                 bg-gradient-to-r
                                 from-cyan-400
                                 via-white
                                 to-purple-500
+                                bg-clip-text
+                                text-transparent
                             "
                         >
                             Arsenal
@@ -956,107 +1045,94 @@ export default function SkillsSpinner() {
                     </motion.h2>
 
                     <motion.p
-                        initial={{
-                            opacity: 0,
-                        }}
-                        whileInView={{
-                            opacity: 1,
-                        }}
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
                         viewport={{
                             once: true,
+                            amount: 0.5,
                         }}
                         transition={{
-                            delay: 0.15,
+                            duration: 0.7,
+                            delay: 0.18,
                         }}
                         className="
-                            max-w-2xl
                             mx-auto
-
                             mt-5
-
+                            max-w-2xl
                             text-xs
+                            leading-relaxed
+                            text-white/40
+
                             sm:text-sm
                             md:text-base
-
-                            text-white/35
-
-                            leading-relaxed
                         "
                     >
-                        Electronics, embedded firmware,
-                        PCB design, industrial control,
-                        communication interfaces, power
-                        systems, and hardware development.
+                        Bridging electronics, embedded systems,
+                        and software engineering to design,
+                        develop, and integrate intelligent
+                        hardware and software solutions.
                     </motion.p>
 
                 </div>
 
                 {/* =================================================
-                    3D CONTROLLER
+                    3D MICROCONTROLLER
                 ================================================= */}
 
                 <motion.div
-                    style={{
-                        y: coreY,
-                    }}
+                    style={{ y: coreY }}
                     className="
-                        relative
-                        w-full
-
-                        h-[300px]
-                        sm:h-[360px]
-                        md:h-[420px]
-                        lg:h-[470px]
-
                         pointer-events-none
+                        relative
+                        mx-auto
+                        h-[260px]
+                        w-full
+                        max-w-3xl
+
+                        sm:h-[330px]
+                        md:h-[390px]
+                        lg:h-[440px]
                     "
                 >
 
                     <Canvas
                         dpr={[1, 1.5]}
                         camera={{
-                            position: [
-                                0,
-                                0,
-                                6,
-                            ],
-                            fov: 44,
+                            position: [0, 0, 7.4],
+                            fov: 42,
                         }}
                         gl={{
                             alpha: true,
                             antialias: true,
+                            powerPreference: "high-performance",
                         }}
                     >
 
-                        <ambientLight
-                            intensity={0.4}
-                        />
+                        {/* LIGHTING */}
+
+                        <ambientLight intensity={0.65} />
 
                         <pointLight
-                            position={[
-                                4,
-                                4,
-                                5,
-                            ]}
-                            intensity={4}
+                            position={[4, 4, 5]}
+                            intensity={3.5}
                             color="#06b6d4"
                         />
 
                         <pointLight
-                            position={[
-                                -4,
-                                -3,
-                                4,
-                            ]}
+                            position={[-4, -3, 4]}
                             intensity={3}
                             color="#a855f7"
                         />
 
+                        <pointLight
+                            position={[0, 0, 5]}
+                            intensity={1.5}
+                            color="#ffffff"
+                        />
+
                         <Suspense fallback={null}>
                             <EmbeddedCoreScene
-                                scrollProgress={
-                                    scrollVal
-                                }
+                                scrollProgress={scrollYProgress}
                             />
                         </Suspense>
 
@@ -1065,289 +1141,99 @@ export default function SkillsSpinner() {
                 </motion.div>
 
                 {/* =================================================
-                    SKILL ROWS
+                    ENGINEERING SKILL CATEGORIES
                 ================================================= */}
 
                 <div
                     className="
                         w-full
-                        space-y-6
+                        min-w-0
+                        space-y-7
+
+                        sm:space-y-9
+                        lg:space-y-10
                     "
                 >
 
-                    {/* =============================================
-                        ROW 1
-                    ============================================= */}
-
-                    <div
-                        className="
-                            relative
-                            w-full
-                            overflow-visible
-                        "
-                    >
-
-                        {/* Left Fade */}
-
-                        <div
-                            className="
-                                absolute
-                                left-0
-                                top-0
-                                bottom-0
-
-                                w-8
-                                sm:w-16
-                                md:w-24
-
-                                z-10
-
-                                pointer-events-none
-
-                                bg-gradient-to-r
-                                from-stone-950
-                                to-transparent
-                            "
-                        />
-
-                        {/* Right Fade */}
-
-                        <div
-                            className="
-                                absolute
-                                right-0
-                                top-0
-                                bottom-0
-
-                                w-8
-                                sm:w-16
-                                md:w-24
-
-                                z-10
-
-                                pointer-events-none
-
-                                bg-gradient-to-l
-                                from-stone-950
-                                to-transparent
-                            "
-                        />
-
+                    {SKILL_GROUPS.map((group, index) => (
                         <motion.div
-                            style={{
-                                x: row1X,
+                            key={group.title}
+                            initial={{
+                                opacity: 0,
+                                y: 20,
                             }}
-                            className="
-                                flex
-
-                                justify-center
-
-                                gap-3
-                                sm:gap-4
-
-                                w-max
-
-                                pb-10
-                            "
-                        >
-                            {SKILL_ROWS[0].map(
-                                (skill) => (
-                                    <SkillCard
-                                        key={skill.name}
-                                        skill={skill}
-                                    />
-                                )
-                            )}
-                        </motion.div>
-
-                    </div>
-
-                    {/* =============================================
-                        ROW 2
-                    ============================================= */}
-
-                    <div
-                        className="
-                            relative
-                            w-full
-                            overflow-visible
-                        "
-                    >
-
-                        {/* Left Fade */}
-
-                        <div
-                            className="
-                                absolute
-                                left-0
-                                top-0
-                                bottom-0
-
-                                w-8
-                                sm:w-16
-                                md:w-24
-
-                                z-10
-
-                                pointer-events-none
-
-                                bg-gradient-to-r
-                                from-stone-950
-                                to-transparent
-                            "
-                        />
-
-                        {/* Right Fade */}
-
-                        <div
-                            className="
-                                absolute
-                                right-0
-                                top-0
-                                bottom-0
-
-                                w-8
-                                sm:w-16
-                                md:w-24
-
-                                z-10
-
-                                pointer-events-none
-
-                                bg-gradient-to-l
-                                from-stone-950
-                                to-transparent
-                            "
-                        />
-
-                        <motion.div
-                            style={{
-                                x: row2X,
+                            whileInView={{
+                                opacity: 1,
+                                y: 0,
                             }}
-                            className="
-                                flex
-
-                                justify-center
-
-                                gap-3
-                                sm:gap-4
-
-                                w-max
-
-                                pb-10
-                            "
+                            viewport={{
+                                once: true,
+                                amount: 0.15,
+                            }}
+                            transition={{
+                                duration: 0.6,
+                                delay: index * 0.08,
+                            }}
+                            className="w-full min-w-0"
                         >
-                            {[
-                                ...SKILL_ROWS[1],
-                            ]
-                                .reverse()
-                                .map(
-                                    (skill) => (
-                                        <SkillCard
-                                            key={
-                                                skill.name
-                                            }
-                                            skill={
-                                                skill
-                                            }
-                                        />
-                                    )
-                                )}
+                            <SkillTrack
+                                group={group}
+                                index={index}
+                                scrollProgress={scrollYProgress}
+                            />
                         </motion.div>
-
-                    </div>
+                    ))}
 
                 </div>
 
                 {/* =================================================
-                    CATEGORIES
+                    BOTTOM ENGINEERING LABELS
                 ================================================= */}
 
                 <motion.div
-                    initial={{
-                        opacity: 0,
-                    }}
-                    whileInView={{
-                        opacity: 1,
-                    }}
-                    viewport={{
-                        once: true,
-                    }}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7 }}
                     className="
                         flex
                         flex-wrap
-                        justify-center
                         items-center
+                        justify-center
 
                         gap-x-3
-                        sm:gap-x-4
-
                         gap-y-2
 
-                        text-[8px]
-                        sm:text-[9px]
+                        pt-2
 
                         font-mono
-
+                        text-[8px]
                         uppercase
+                        tracking-[0.16em]
+                        text-white/25
 
-                        tracking-[0.15em]
+                        sm:gap-x-4
+                        sm:text-[9px]
                         sm:tracking-[0.2em]
-
-                        text-white/20
                     "
                 >
-                    <span>
-                        Embedded
-                    </span>
+                    <span>Design</span>
 
-                    <span className="text-cyan-500/30">
-                        •
-                    </span>
+                    <span className="text-cyan-500/50">•</span>
 
-                    <span>
-                        PCB
-                    </span>
+                    <span>Develop</span>
 
-                    <span className="text-cyan-500/30">
-                        •
-                    </span>
+                    <span className="text-cyan-500/50">•</span>
 
-                    <span>
-                        Firmware
-                    </span>
+                    <span>Program</span>
 
-                    <span className="text-cyan-500/30">
-                        •
-                    </span>
+                    <span className="text-cyan-500/50">•</span>
 
-                    <span>
-                        Industrial
-                    </span>
+                    <span>Integrate</span>
 
-                    <span className="text-cyan-500/30">
-                        •
-                    </span>
+                    <span className="text-cyan-500/50">•</span>
 
-                    <span>
-                        IoT
-                    </span>
-
-                    <span className="text-cyan-500/30">
-                        •
-                    </span>
-
-                    <span>
-                        Power
-                    </span>
-
-                    <span className="text-cyan-500/30">
-                        •
-                    </span>
-
-                    <span>
-                        Automation
-                    </span>
+                    <span>Innovate</span>
                 </motion.div>
 
             </motion.div>
